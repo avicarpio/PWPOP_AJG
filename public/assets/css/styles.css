@@ -1,0 +1,43 @@
+body{
+    background-color: whitesmoke;
+}
+
+
+.table{
+    margin-bottom: 0;
+}
+
+.list{
+    margin: 2% 2% 0 2%;
+}
+
+.title .right {
+    float:right;
+    margin-top: -3em;
+}
+
+.right {
+    float:right;
+}
+label .descripcio{
+    display: block;
+    width: 300px;
+}
+
+
+.GEEKFORGEEKS {
+    margin-left: 70px;
+    font-weight: bold ;
+    float: left;
+    clear: left;
+    width: 100px;
+    text-align: left;
+    margin-right: 10px;
+    font-family:sans-serif,bold, Arial, Helvetica;
+    font-size:14px;
+}
+
+
+.navbar-expand-lg {
+    justify-content: space-between;
+}

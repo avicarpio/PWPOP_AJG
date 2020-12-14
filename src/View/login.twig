@@ -1,0 +1,53 @@
+{% extends "base.html.twig" %}
+{% block title %}Login{% endblock %}
+
+{% block content %}
+
+    {% if logged %}
+
+        <script>window.location.href = "/"</script>
+    {% endif %}
+
+    <section class="section">
+        <div class="container">
+
+            <form id="login-form"
+                  action="{{ path_for('login') }}"
+                  method="POST">
+
+
+
+                <label id="emailField" class="label">Email
+                    <input id="email" name="email" class="input is-hovered" type="text" placeholder="Enter email" onsubmit = "return(validate());">
+                </label>
+                <small id="errorEmail"></small>
+                <p class="error_login" id="errorInfo">{{ errors.info }}</p>
+                <p class="error_login" id="errorGeneral">{{ errors.general }}</p>
+                <p class="error_login" id="errorMail">{{ errors.email }}</p>
+
+
+                <label id="passField" class="label">Password
+                    <input id="password" name="password" class="input is-hovered" type="password" placeholder="Enter password" onsubmit = "return(validate());">
+                </label>
+                <small id="errorPass"></small>
+                <p class="error_login" id="errorPassword">{{ errors.password }}</p>
+
+
+
+                <br>
+
+                <span>Remember me</span>
+                <span><input type="checkbox" name="remember" value="Yes" /></span>
+
+
+                <p class="error_general" id="errorGeneral">{{ errors.general }}</p>
+
+                <div class="container">
+                    <input class="button is-info" id="login" type="submit" value="Login" onclick="return jsLogin()">
+                    <input class="button is-danger" onclick="window.location.href='/'" type="button" value="Cancel" >
+                </div>
+            </form>
+        </div>
+    </section>
+
+{% endblock %}

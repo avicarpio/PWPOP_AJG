@@ -1,0 +1,97 @@
+{% extends 'base.html.twig' %}
+{% set i = 1 %}
+{% block content %}
+
+    {% if not logged %}
+        <a href="/login">Login</a>
+        <br>
+        <a href="/register">Sign Up</a>
+    {% endif %}
+
+    {% if logged %}
+        <a href="/addItem">+ Add Item</a>
+        <div class="title">
+            <span class = "right"><a href="/myProfile">My Profile</a></span>
+        </div>
+        <br>
+        <br>
+
+        <div class="title">
+            <span class = "right"><a href="/myItems">My Items</a></span>
+        </div>
+    {% endif %}
+
+
+    <br>
+    <br>
+
+    <form id="search-form"
+      action="{{ path_for('search') }}"
+      method="POST">
+
+    {% if mine %}
+        <h1 align = 'center'>This are your Items</h1>
+    {% else %}
+        <label id="searchField" class="label">Search :
+            <input id="search" name="search" class="input is-hovered" type="text" placeholder="Search...">
+            <input class="button is-info" id="search" type="submit" value="Search">
+        </label>
+    {% endif %}
+
+    </form>
+    <div class="list">
+        <table class="table">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">Nº</th>
+                <th scope="col">Title</th>
+
+                {% if mine %}
+                    <th scope="col">Image</th>
+                    <th scope="col">Delete</th>
+                    <th scope="col">Edit</th>
+
+                {% else %}
+                    <th scope="col">Description</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Image</th>
+                    {% if logged %}
+                        <th scope="col">Buy</th>
+                    {% endif %}
+                {% endif %}
+            </tr>
+            </thead>
+            <tbody>
+
+
+            {% for item in items %}
+
+                <tr class="table-light">
+                    <th scope="row">{{ i }}</th>
+                    <td>{{ item.title }}</td>
+                    {% if mine %}
+                        <td><a class="name" href="/item/{{item.id}}"><img src="{{ item.image }}" alt="{{ item.title }}" style="max-width:50px; max-height:50px"/></a></td>
+                        <td><a class="delete" href="/delete/item/{{item.id}}">Delete</a></td>
+                        <td><a class="edit" href="/edit/item/{{item.id}}">Edit</a></td>
+
+                    {% else %}
+                        <td>{{ item.description }}</td>
+                        <td>{{ item.price }} €</td>
+                        <td><a class="name" href="/item/{{item.id}}"><img src="{{ item.image }}" alt="{{ item.title }}" style="max-width:50px; max-height:50px"/></a></td>
+                        {% if logged %}
+                            {% if not mine %}
+                                <td> <a class="buy" href="/buy/{{item.id}}">Buy</a></td>
+
+                            {% endif %}
+                        {% endif %}
+                    {% endif %}
+
+                </tr>
+                {% set i = i + 1 %}
+            {% endfor %}
+
+
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

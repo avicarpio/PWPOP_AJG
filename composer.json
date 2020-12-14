@@ -1,0 +1,19 @@
+{
+    "name": "oriolpando/exam",
+    "description": "Final exam",
+    "type": "project",
+    "authors": [{
+        "name": "oriolpando",
+        "email": "oriolpando@gmail.com"
+    }],
+    "require": {
+        "slim/slim": "^3.12",
+        "slim/twig-view": "^2.5",
+        "doctrine/dbal": "^2.9"
+    },
+    "autoload": {
+        "psr-4": {
+            "PwExam\\": "src/"
+        }
+    }
+}

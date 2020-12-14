@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+{% block title %}Product - {{ item.name }}{% endblock %}
+{% block content %}
+
+
+    {% if not okay %}
+        <h1>ERROR 404 - Item not found</h1>
+        <input class="button is-danger" onclick="window.location.href='/'" type="button" value="Go Back">
+    {% else %}
+
+        <a href="/">Back</a>
+
+        <h3>{{ item.title }}</h3>
+
+        <h2>{{ item.category }} </h2>
+
+
+
+        <h4>{{ item.price }} €</h4>
+
+        <h6>{{ item.description }}</h6>
+
+
+        <h4><img src="{{ item.image }}" alt="{{ item.title }}" style="max-width:300px; max-height:300px" /></h4>
+
+        <p class="error_update" id="errorGeneral">{{ errors.general }}</p>
+
+        {% if logged %}
+           {% if mine %}
+
+               <input class="button is-info" id="buy" onclick="window.location.href='/buy/{{item.id}}'" type="button"  value="Buy">
+
+           {% else %}
+
+               <td><a class="edit" href="/edit/item/{{item.id}}">Edit</a></td>
+               <td><a class="delete" href="/delete/item/{{item.id}}">Delete</a></td>
+
+           {% endif %}
+        {% endif %}
+
+    {% endif %}
+
+{% endblock %}

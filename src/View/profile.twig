@@ -1,0 +1,87 @@
+{% extends 'base.html.twig' %}
+{% block title %}My Profile{% endblock %}
+{% block content %}
+
+    {% if not logged %}
+        <h1>ERROR 403 - You have to log in to see your profile</h1>
+        <input class="button is-danger" onclick="window.location.href='/'" type="button" value="Go Back">
+    {% endif %}
+
+
+    {% if logged %}
+        <a href="/">Back</a>
+
+        <form id="update-form"
+              action="{{ path_for('updateUser') }}"
+              method="POST"
+              enctype="multipart/form-data">
+
+            <p class="error_login" id="errorInfo">{{ errors.info }}</p>
+
+            <p>
+                <img src="{{ user.profile_image }}" style="max-width:100px; max-height:100px" onerror="this.src='https://anotherjavaduke.files.wordpress.com/2018/08/avataaars-2.png'" />
+            </p>
+
+            <label id="nameField" class="label">
+                Name
+                <input id="name" name="name" class="input is-hovered" type="text" value="{{ user.name }}">
+            </label>
+            <small id="errorName"></small>
+            <p class="error_update" id="errorName">{{ errors.name }}</p>
+
+
+            <label id="usernameField" class="label">
+                Username
+                <input id="username" name="username" class="input is-hovered" type="text" value="{{ user.username }}" readonly>
+            </label>
+            <p class="error_update" id="errorUsername">{{ errors.username }}</p>
+
+
+            <label id="emailField" class="label">
+                Email
+                <input id="email" name="email" class="input is-hovered" type="text" value="{{ user.email }}">
+            </label>
+            <small id="errorEmail"></small>
+            <p class="error_update" id="errorMail">{{ errors.email }}</p>
+
+
+            <label id="birthdateField" class="label">
+                Birthdate
+                <input id="birthdate" name="birthdate" class="input is-hovered" type="date" value="{{ user.birthdate }}">
+            </label>
+            <p class="error_update" id="errorBirthdate">{{ errors.birthdate }}</p>
+
+
+            <label id="phoneField" class="label">
+                Phone Number
+                <input id="phone" name="phone" class="input is-hovered" type="text" placeholder="Enter phone number" value="{{ user.phone }}">
+            </label>
+            <small id="errorPhone"></small>
+            <p class="error_update" id="errorPhone">{{ errors.phone }}</p>
+
+
+            <label id="passField" class="label">
+                Change Password
+                <input id="password" name="password" class="input is-hovered" type="password" placeholder="Enter password">
+            </label>
+            <p class="error_update" id="errorPassword">{{ errors.password }}</p>
+
+
+            <label id="imageField" class="label">
+                Change Profile Image
+                <input id="profile_image" name="profile_image" class="input is-hovered" type="file" accept=".jpg,.png" value="{{ user.fp }}">
+            </label>
+            <p class="error_register" id="errorImage">{{ errors.image }}</p>
+
+
+            <div class="container">
+                <input class="button is-info" id="update" type="submit" value="Update Data" onclick="return jsEditProfile()" >
+                <input class="button is-delete" onclick="window.location.href='/delete/account/{{user.id}}'" type="button" value="Delete Account">
+                <input class="button is-danger" onclick="window.location.href='/'" type="button" value="Cancel">
+            </div>
+        </form>
+    {% endif %}
+
+    <p class="error_update" id="errorGeneral">{{ errors.general }}</p>
+
+{% endblock %}

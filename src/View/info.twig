@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+{% block title %}
+    Product - {{ item.name }}{% endblock %}
+{% block content %}
+
+    <h1>{{ errors.info }}</h1>
+    <h1>{{ errors.general }}</h1>
+    <input class="button is-danger" onclick="window.location.href='/'" type="button" value="Go Back">
+
+
+{% endblock %}

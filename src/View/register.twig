@@ -1,0 +1,76 @@
+{% extends "base.html.twig" %}
+{% block title %}Register{% endblock %}
+{% block content %}
+    <section class="section">
+        <div class="container">
+            <form id="regiser-form"
+                  action="{{ path_for('register') }}"
+                  method="POST"
+                  enctype="multipart/form-data">
+
+
+                <label id="nameField" class="label">*Name
+                    <input id="name" name="name" class="input is-hovered" type="text" placeholder="Enter Name" onsubmit="return validateForm()">
+                </label>
+                <small id="errorName"></small>
+                <p class="error_register" id="errorName">{{ errors.name }}</p>
+                <p class="error_register" id="errorName">{{ errors.general }}</p>
+
+
+                <label id="usernameField" class="label">*Username
+                    <input id="username" name="username" class="input is-hovered" type="text" placeholder="Enter Username">
+                </label>
+                <small id="errorUsername"></small>
+                <p class="error_register" id="errorUsername">{{ errors.username }}</p>
+
+
+                <label id="emailField" class="label">*Email
+                    <input id="email" name="email" class="input is-hovered" type="text" placeholder="Enter email">
+                </label>
+                <small id="errorEmail"></small>
+                <p class="error_register" id="errorMail">{{ errors.email }}</p>
+
+
+                <label id="birthdateField" class="label">Birthdate
+                    <input id="birthdate" name="birthdate" class="input is-hovered" type="date">
+                </label>
+                <p class="error_register" id="errorBirthdate">{{ errors.birthdate }}</p>
+
+
+
+                <label id="phoneField" class="label">*Phone Number
+                    <input id="phone" name="phone" class="input is-hovered" type="text" placeholder="Enter phone number">
+                </label>
+                <small id="errorPhone"></small>
+                <p class="error_register" id="errorPhone">{{ errors.phone }}</p>
+
+
+
+                <label id="passField" class="label">*Password
+                    <input id="password" name="password" class="input is-hovered" type="password" placeholder="Enter password">
+                </label>
+                <small id="errorPass"></small>
+                <p class="error_register" id="errorPassword">{{ errors.password }}</p>
+
+
+                <label id="passField" class="label">*Confirm Password
+                    <input id="passwordConfirm" name="passwordConfirm" class="input is-hovered" type="password" placeholder="Enter password again">
+                </label>
+                <small id="errorPass2"></small>
+
+
+                <p class="error_register" id="errorImage">{{ errors.image }}</p>
+                <label id="imageField" class="label">Profile Image
+                    <input id="profile_image" name="profile_image" class="input is-hovered" type="file" accept=".jpg,.png">
+                </label>
+
+
+                <div class="container">
+                    <input class="button is-info" id="register" type="submit" value="Register" onclick="return jsRegister()">
+                    <input class="button is-danger" onclick="window.location.href='/'" type="button" value="Cancel">
+                </div>
+            </form>
+        </div>
+    </section>
+
+{% endblock %}

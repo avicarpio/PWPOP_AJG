@@ -1,0 +1,57 @@
+{% extends "base.html.twig" %}
+{% block title %}Register{% endblock %}
+{% block content %}
+    <section class="section">
+        <div class="container">
+            <form id="regiser-form"
+                  action="{{ path_for('addItem') }}"
+                  method="POST"
+                  enctype="multipart/form-data">
+
+                <p class="error_item" id="errorGeneral">{{ errors.general }}</p>
+                <p class="error_item" id="errorTitle">{{ errors.title }}</p>
+                <label id="titleField" class="label">*Title
+                    <input id="title" name="title" class="input is-hovered" type="text" placeholder="Enter Title">
+                </label>
+                <p class="error_item" id="errorDescription">{{ errors.description }}</p>
+
+                <br>
+
+                <label id="descriptionField" class="label">*Description
+                    <textarea id="description" name="description" rows="4" cols="30" placeholder="Enter description"></textarea>
+                </label>
+                <p class="error_item" id="errorPrice">{{ errors.price }}</p>
+                <label id="emailField" class="label">*Price
+                    <input id="price" name="price" class="input is-hovered" type="text" placeholder="Enter price">
+                </label>
+                <span>€</span>
+                <p class="error_item" id="errorImage">{{ errors.image }}</p>
+                <label id="imageField" class="label">*Item Image
+                    <input id="item_image" name="item_image" class="input is-hovered" type="file" accept=".jpg,.png">
+                </label>
+
+                <br>
+
+                <p class="error_item" id="errorCategory">{{ errors.category }}</p>
+                <span>
+                    <label for="category">*Category : </label><select id="category" name="category">
+                        <option value="--/--">--/--</option>}
+                        <option value="Computers and electronic">Computers and electronic</option>
+                        <option value="Cars">Cars</option>
+                        <option value="Sports">Sports</option>
+                        <option value="Games">Games</option>
+                        <option value="Fashion">Fashion</option>
+                        <option value="Home">Home</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </span>
+                <div class="container">
+                    <input class="button is-info" id="addItem" type="submit" value="Add Item">
+                    <input class="button is-danger" onclick="window.location.href='/'" type="button" value="Cancel">
+                </div>
+            </form>
+        </div>
+        <p class="error_login" id="errorInfo">{{ errors.info }}</p>
+    </section>
+
+{% endblock %}
